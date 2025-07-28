@@ -21,9 +21,9 @@ export default function Home() {
     <div>
       {/* Hero */}
       <section className="relative h-96 flex items-center justify-center text-white mb-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-        <h1 className="text-4xl sm:text-5xl font-extrabold z-10 text-center px-4">
-          Découvrez nos produits de beauté
-        </h1>
+
+        <p className="text-base sm:text-lg md:text-xl">Découvrez nos produits de beauté</p>
+
 
         {/* Decorative SVG Wave */}
         <svg

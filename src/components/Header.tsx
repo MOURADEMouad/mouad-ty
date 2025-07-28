@@ -36,19 +36,22 @@ export default function Header() {
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center p-4">
-        <Link to="/" className="text-2xl font-bold text-blue-700">
+        <Link
+          to="/"
+          className="text-2xl font-bold text-blue-700 focus:outline focus:outline-2 focus:outline-blue-800"
+        >
           Arwa Shop
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
+        <nav role="navigation" aria-label="Menu principal" className="hidden md:flex items-center space-x-6">
           <NavLink
             to="/"
             end
             className={({ isActive }) =>
               isActive
-                ? "text-blue-700 font-semibold"
-                : "hover:text-blue-700 transition-colors"
+                ? "text-blue-700 font-semibold focus:outline focus:outline-2 focus:outline-blue-800"
+                : "hover:text-blue-700 transition-colors focus:outline focus:outline-2 focus:outline-blue-800"
             }
           >
             Accueil
@@ -58,8 +61,8 @@ export default function Header() {
             to="/products"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-700 font-semibold"
-                : "hover:text-blue-700 transition-colors"
+                ? "text-blue-700 font-semibold focus:outline focus:outline-2 focus:outline-blue-800"
+                : "hover:text-blue-700 transition-colors focus:outline focus:outline-2 focus:outline-blue-800"
             }
           >
             Produits
@@ -68,14 +71,18 @@ export default function Header() {
           <NavLink
             to="/cart"
             className={({ isActive }) =>
-              isActive
-                ? "text-blue-700 font-semibold flex items-center"
-                : "hover:text-blue-700 transition-colors flex items-center"
+              (isActive
+                ? "text-blue-700 font-semibold flex items-center focus:outline focus:outline-2 focus:outline-blue-800"
+                : "hover:text-blue-700 transition-colors flex items-center focus:outline focus:outline-2 focus:outline-blue-800")
             }
+            aria-label={`Panier, ${cartCount} article${cartCount > 1 ? "s" : ""}`}
           >
             Panier
             {cartCount > 0 && (
-              <span className="ml-1 inline-block bg-red-600 text-white rounded-full px-2 text-xs font-bold">
+              <span
+                aria-live="polite"
+                className="ml-1 inline-block bg-red-600 text-white rounded-full px-2 text-xs font-bold"
+              >
                 {cartCount}
               </span>
             )}
@@ -85,8 +92,8 @@ export default function Header() {
             to="/about"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-700 font-semibold"
-                : "hover:text-blue-700 transition-colors"
+                ? "text-blue-700 font-semibold focus:outline focus:outline-2 focus:outline-blue-800"
+                : "hover:text-blue-700 transition-colors focus:outline focus:outline-2 focus:outline-blue-800"
             }
           >
             À propos
@@ -96,8 +103,8 @@ export default function Header() {
             to="/contact"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-700 font-semibold"
-                : "hover:text-blue-700 transition-colors"
+                ? "text-blue-700 font-semibold focus:outline focus:outline-2 focus:outline-blue-800"
+                : "hover:text-blue-700 transition-colors focus:outline focus:outline-2 focus:outline-blue-800"
             }
           >
             Contact
@@ -106,8 +113,12 @@ export default function Header() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-blue-700 focus:outline-none"
+          className="md:hidden text-blue-700 focus:outline focus:outline-2 focus:outline-blue-800"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-menu"
+          type="button"
         >
           <svg
             className="w-6 h-6"
@@ -115,6 +126,8 @@ export default function Header() {
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
           >
             {isMenuOpen ? (
               <path
@@ -137,15 +150,20 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white pb-4 px-4">
+        <div
+          id="mobile-menu"
+          role="navigation"
+          aria-label="Menu mobile"
+          className="md:hidden bg-white pb-4 px-4"
+        >
           <nav className="flex flex-col space-y-3">
             <NavLink
               to="/"
               end
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-700 font-semibold py-2"
-                  : "hover:text-blue-700 transition-colors py-2"
+                  ? "text-blue-700 font-semibold py-2 focus:outline focus:outline-2 focus:outline-blue-800"
+                  : "hover:text-blue-700 transition-colors py-2 focus:outline focus:outline-2 focus:outline-blue-800"
               }
               onClick={() => setIsMenuOpen(false)}
             >
@@ -156,8 +174,8 @@ export default function Header() {
               to="/products"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-700 font-semibold py-2"
-                  : "hover:text-blue-700 transition-colors py-2"
+                  ? "text-blue-700 font-semibold py-2 focus:outline focus:outline-2 focus:outline-blue-800"
+                  : "hover:text-blue-700 transition-colors py-2 focus:outline focus:outline-2 focus:outline-blue-800"
               }
               onClick={() => setIsMenuOpen(false)}
             >
@@ -168,14 +186,18 @@ export default function Header() {
               to="/cart"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-700 font-semibold flex items-center py-2"
-                  : "hover:text-blue-700 transition-colors flex items-center py-2"
+                  ? "text-blue-700 font-semibold flex items-center py-2 focus:outline focus:outline-2 focus:outline-blue-800"
+                  : "hover:text-blue-700 transition-colors flex items-center py-2 focus:outline focus:outline-2 focus:outline-blue-800"
               }
+              aria-label={`Panier, ${cartCount} article${cartCount > 1 ? "s" : ""}`}
               onClick={() => setIsMenuOpen(false)}
             >
               Panier
               {cartCount > 0 && (
-                <span className="ml-1 inline-block bg-red-600 text-white rounded-full px-2 text-xs font-bold">
+                <span
+                  aria-live="polite"
+                  className="ml-1 inline-block bg-red-600 text-white rounded-full px-2 text-xs font-bold"
+                >
                   {cartCount}
                 </span>
               )}
@@ -185,8 +207,8 @@ export default function Header() {
               to="/about"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-700 font-semibold py-2"
-                  : "hover:text-blue-700 transition-colors py-2"
+                  ? "text-blue-700 font-semibold py-2 focus:outline focus:outline-2 focus:outline-blue-800"
+                  : "hover:text-blue-700 transition-colors py-2 focus:outline focus:outline-2 focus:outline-blue-800"
               }
               onClick={() => setIsMenuOpen(false)}
             >
@@ -197,8 +219,8 @@ export default function Header() {
               to="/contact"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-700 font-semibold py-2"
-                  : "hover:text-blue-700 transition-colors py-2"
+                  ? "text-blue-700 font-semibold py-2 focus:outline focus:outline-2 focus:outline-blue-800"
+                  : "hover:text-blue-700 transition-colors py-2 focus:outline focus:outline-2 focus:outline-blue-800"
               }
               onClick={() => setIsMenuOpen(false)}
             >
