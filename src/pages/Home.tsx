@@ -20,16 +20,23 @@ export default function Home() {
   return (
     <div>
       {/* Hero */}
-      <section
-        className="h-96 bg-cover bg-center flex items-center justify-center text-white mb-12"
-        style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80')",
-        }}
-      >
-        <h1 className="text-5xl font-extrabold bg-black/50 p-6 rounded">
+      <section className="relative h-96 flex items-center justify-center text-white mb-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+        <h1 className="text-4xl sm:text-5xl font-extrabold z-10 text-center px-4">
           Découvrez nos produits de beauté
         </h1>
+
+        {/* Decorative SVG Wave */}
+        <svg
+          className="absolute bottom-0 left-0 w-full"
+          viewBox="0 0 1440 320"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill="#ffffff"
+            fillOpacity="1"
+            d="M0,256L80,250.7C160,245,320,235,480,213.3C640,192,800,160,960,149.3C1120,139,1280,149,1360,154.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"
+          ></path>
+        </svg>
       </section>
 
       {/* Products Preview */}
